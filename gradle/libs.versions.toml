@@ -1,7 +1,7 @@
 [versions]
 agp = "8.12.1"
 converterGson = "3.0.0"
-kotlin = "2.0.21"
+kotlin = "2.2.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -11,11 +11,13 @@ activityCompose = "1.8.0"
 composeBom = "2024.09.00"
 pagingRuntime = "3.3.6"
 retrofit_version = "3.0.0"
+roomRuntime = "2.7.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-paging-common-ktx = { module = "androidx.paging:paging-common-ktx", version.ref = "pagingRuntime" }
-androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -31,9 +33,14 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit_version" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+androidx-paging-common-ktx = { module = "androidx.paging:paging-common-ktx", version.ref = "pagingRuntime" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version = "2.2.0-2.0.2" }
 

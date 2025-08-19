@@ -9,8 +9,10 @@ enum class PokemonColor(val colorName: String) {
     ;
 
     companion object {
-        fun fromString(name: String): PokemonColor {
-            return PokemonColor.entries.find { it.colorName.equals(name, ignoreCase = true) } ?: UNKNOWN
+        fun fromString(nameColor: String): PokemonColor {
+            return PokemonColor.entries.find { value ->
+                value.colorName.equals(nameColor, ignoreCase = true)
+            } ?: UNKNOWN
         }
     }
 }

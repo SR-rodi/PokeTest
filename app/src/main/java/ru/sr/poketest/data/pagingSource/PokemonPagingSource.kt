@@ -19,7 +19,7 @@ class PokemonPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Pokemon> {
         val offset = params.key ?: 0
-        return repository.getAllPokemon(offset, pageSize)
+        return repository.getPokemon(offset, pageSize)
             .fold(
                 onSuccess = { pokemons ->
                     LoadResult.Page(
