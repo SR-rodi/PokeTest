@@ -1,5 +1,6 @@
 package ru.sr.poketest.presentation.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -7,8 +8,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -18,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,6 +29,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.flowOf
+import ru.sr.poketest.R
 import ru.sr.poketest.domain.model.PokemonColor
 import ru.sr.poketest.presentation.uiKit.image.ImageWithPlaceholder
 import ru.sr.poketest.presentation.uiKit.theme.PokeTheme
@@ -40,6 +45,18 @@ fun PokeListScreen(pagingItems: LazyPagingItems<PokemonVO>) {
         verticalArrangement = Arrangement.spacedBy(16.dp)
 
     ) {
+        item(span = { GridItemSpan(2) }) {
+            Image(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .heightIn(max = 100.dp),
+                painter = painterResource(R.drawable.pokemon_text_logo),
+                contentDescription = "pokemon text logo",
+            )
+        }
+
+        item(span = { GridItemSpan(2) }) {}
+
         items(pagingItems.itemCount) { index ->
             val pokemonColor = pagingItems[index]?.color ?: PokemonColor.UNKNOWN
             Box(
@@ -57,7 +74,9 @@ fun PokeListScreen(pagingItems: LazyPagingItems<PokemonVO>) {
             ) {
                 pagingItems[index]?.imageUrl?.let { imageUrl ->
                     ImageWithPlaceholder(
-                        modifier = Modifier.align(Alignment.Center).fillMaxSize(0.6f),
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxSize(0.6f),
                         imageUrl = imageUrl
                     )
                 }

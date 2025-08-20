@@ -21,20 +21,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PokeTheme {
+            PokeTheme(isNightMode = true) {
+
                 Box(
                     Modifier
-                        .systemBarsPadding()
                         .fillMaxSize()
-                        .background(PokeTheme.colors.surface)
+                        .background(PokeTheme.colors.background)
                 ) {
-                    val viewModel: HomeViewModel = koinViewModel()
-                    val state = viewModel.pokemonState.collectAsState()
+                    Box(
+                        Modifier
+                            .systemBarsPadding()
+                            .fillMaxSize()
+                    ) {
+                        val viewModel: HomeViewModel = koinViewModel()
+                        val state = viewModel.pokemonState.collectAsState()
 
-                    PokeListScreen(pagingItems = state.value.pagingFlow.collectAsLazyPagingItems())
+                        PokeListScreen(pagingItems = state.value.pagingFlow.collectAsLazyPagingItems())
+                    }
                 }
             }
-
         }
     }
 }
