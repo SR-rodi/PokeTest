@@ -1,6 +1,5 @@
 package ru.sr.poketest.di
 
-import android.content.Context
 import androidx.room.Room
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +15,7 @@ import ru.sr.poketest.data.repository.PokemonRepositoryImpl
 import ru.sr.poketest.domain.interactor.PokemonInteractor
 import ru.sr.poketest.domain.interactor.impl.PokemonInteractorImpl
 import ru.sr.poketest.domain.repository.PokemonRepository
-import ru.sr.poketest.presentation.home.HomeViewModel
+import ru.sr.poketest.presentation.screen.home.HomeViewModel
 
 
 const val BASE_URL = "https://pokeapi.co/api/"

@@ -1,4 +1,4 @@
-package ru.sr.poketest.presentation.home
+package ru.sr.poketest.presentation.screen.home.model
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.MutableStateFlow

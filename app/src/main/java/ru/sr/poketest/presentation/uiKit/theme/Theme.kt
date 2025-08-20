@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 
 
 @Composable
@@ -12,6 +13,7 @@ fun PokeTheme(
     isNightMode: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
+
     MaterialTheme(colorScheme = MaterialTheme.colorScheme.copy(onPrimaryContainer = Color(0xFFFFFFFF))) {
         val colors = if (isNightMode) DarkPokePalette else LightPokePalette
         CompositionLocalProvider(

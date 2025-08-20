@@ -8,5 +8,5 @@ sealed interface PokeDestination {
     object PokemonList : PokeDestination
 
     @Serializable
-    class Search(val name: String) : PokeDestination
+    object Search : PokeDestination
 }

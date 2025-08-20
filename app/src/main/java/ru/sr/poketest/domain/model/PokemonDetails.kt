@@ -1,9 +1,7 @@
 package ru.sr.poketest.domain.model
 
-class Pokemon(
+class PokemonDetails(
     val name: String,
-    val imageUrl: String,
+    val sprites: List<String>,
     val color: PokemonColor
 )
-
-

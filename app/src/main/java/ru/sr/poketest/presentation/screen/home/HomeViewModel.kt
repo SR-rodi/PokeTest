@@ -1,4 +1,4 @@
-package ru.sr.poketest.presentation.home
+package ru.sr.poketest.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import ru.sr.poketest.domain.interactor.PokemonInteractor
+import ru.sr.poketest.presentation.screen.home.model.PokemonListState
+import ru.sr.poketest.presentation.screen.home.model.PokemonVO
 
 class HomeViewModel(
     private val pokemonInteractor: PokemonInteractor
