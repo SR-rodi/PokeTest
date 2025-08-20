@@ -66,8 +66,9 @@ dependencies {
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-    //implementation("io.insert-koin:koin-androidx-viewmodel:2.2.3")
     implementation(libs.koin.androidx.compose)
+
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
