@@ -14,7 +14,7 @@ interface PokeApi {
         @Query("limit") limit: Int,
     ): PokemonListResponseNO
 
-    @GET("v2/species/{name}")
+    @GET("v2/pokemon-species/{name}")
     suspend fun getSpecies(
         @Path("name") name: String
     ): PokemonSpeciesNO
