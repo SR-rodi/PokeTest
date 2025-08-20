@@ -6,7 +6,6 @@ import retrofit2.http.Query
 import ru.sr.poketest.data.network.model.PokemonListResponseNO
 import ru.sr.poketest.data.network.model.PokemonSpeciesNO
 
-//https://pokeapi.co/api/",
 interface PokeApi {
 
     @GET("v2/pokemon?offset=20&limit=20")

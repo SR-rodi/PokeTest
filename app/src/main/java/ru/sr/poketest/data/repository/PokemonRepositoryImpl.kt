@@ -44,12 +44,20 @@ class PokemonRepositoryImpl(
     }
 
     private suspend fun mapToDomainPokemon(pokemon: PokemonNameNO): Pokemon {
-        val color = getPokemonColorByName(pokemon.name)
+        val color = getPokemonColor(pokemon)
+
         return Pokemon(
             name = pokemon.name,
             imageUrl = pokemon.url.getPicUrl(),
             color = PokemonColor.fromString(color)
         )
+    }
+
+    private suspend fun getPokemonColor(pokemon: PokemonNameNO): String {
+        val color = runCatching {
+            getPokemonColorByName(pokemon.name)
+        }.getOrDefault("")
+        return color
     }
 
     private suspend fun getPokemonColorByName(name: String): String {

@@ -53,13 +53,21 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.common.ktx)
+    implementation(libs.androidx.paging.compose)
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    //implementation("io.insert-koin:koin-androidx-viewmodel:2.2.3")
+    implementation(libs.koin.androidx.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

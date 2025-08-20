@@ -42,9 +42,7 @@ class HomeViewModel(
                     started = SharingStarted.Lazily,
                     initialValue = PagingData.empty()
                 )
-
             )
         }
     }
 }
-

@@ -7,4 +7,3 @@ import ru.sr.poketest.domain.model.Pokemon
 interface PokemonInteractor {
     fun getPokemonPagingData(): Flow<PagingData<Pokemon>>
 }
-
