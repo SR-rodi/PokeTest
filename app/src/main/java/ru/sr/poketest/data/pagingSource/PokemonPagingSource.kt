@@ -21,11 +21,11 @@ class PokemonPagingSource(
         val offset = params.key ?: 0
         return repository.getPokemon(offset, pageSize)
             .fold(
-                onSuccess = { pokemons ->
+                onSuccess = { pokemon ->
                     LoadResult.Page(
-                        data = pokemons,
+                        data = pokemon,
                         prevKey = if (offset == 0) null else offset - pageSize,
-                        nextKey = if (pokemons.isEmpty()) null else offset + pageSize
+                        nextKey = if (pokemon.isEmpty()) null else offset + pageSize
                     )
                 },
                 onFailure = { errorException ->

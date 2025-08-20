@@ -5,6 +5,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.sr.poketest.data.network.model.PokemonListResponseNO
 import ru.sr.poketest.data.network.model.PokemonSpeciesNO
+import ru.sr.poketest.data.network.model.detail.PokemonDetailsNO
 
 interface PokeApi {
 
@@ -18,4 +19,9 @@ interface PokeApi {
     suspend fun getSpecies(
         @Path("name") name: String
     ): PokemonSpeciesNO
+
+    @GET("v2/pokemon/{name}")
+    suspend fun getPokemonByName(
+        @Query("name") name: String,
+    ): PokemonDetailsNO
 }

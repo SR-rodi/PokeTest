@@ -6,3 +6,10 @@ class Pokemon(
     val color: PokemonColor
 )
 
+class PokemonDetails(
+    val name: String,
+    val sprites: List<String>,
+    val color: PokemonColor
+)
+
+

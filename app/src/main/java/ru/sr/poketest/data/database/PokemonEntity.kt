@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ru.sr.poketest.domain.model.Pokemon
 import ru.sr.poketest.domain.model.PokemonColor
+import ru.sr.poketest.domain.model.PokemonDetails
 
 @Entity(tableName = "pokemon_table")
 class PokemonEntity(
@@ -16,6 +17,14 @@ class PokemonEntity(
         return Pokemon(
             name = name,
             imageUrl = imageUrl,
+            color = PokemonColor.fromString(color)
+        )
+    }
+
+    fun toDetails(): PokemonDetails {
+       return PokemonDetails(
+            name = name,
+            sprites = listOf(imageUrl),
             color = PokemonColor.fromString(color)
         )
     }

@@ -9,6 +9,7 @@ import ru.sr.poketest.data.network.PokeApi
 import ru.sr.poketest.data.network.model.PokemonNameNO
 import ru.sr.poketest.domain.model.Pokemon
 import ru.sr.poketest.domain.model.PokemonColor
+import ru.sr.poketest.domain.model.PokemonDetails
 import ru.sr.poketest.domain.repository.PokemonRepository
 
 class PokemonRepositoryImpl(
@@ -30,6 +31,28 @@ class PokemonRepositoryImpl(
         )
     }
 
+    override suspend fun getPokemonByName(name: String): Result<PokemonDetails> {
+        return runCatching {
+            api.getPokemonByName(name)
+        }.fold(
+            onSuccess = { details ->
+                Result.success(
+                    details.toDomain(
+                        color = PokemonColor.fromString(getPokemonColor(name))
+                    )
+                )
+            },
+            onFailure = {
+                val details = dao.getPokemonByName(name)?.toDetails()
+                if (details == null) {
+                    Result.failure(NullPointerException("Pokemon '$name' not found"))
+                } else {
+                    Result.success(details)
+                }
+            }
+        )
+    }
+
     private suspend fun getPokemonFromApi(offset: Int, limit: Int): List<Pokemon> {
         val response = api.getAllPokemon(offset = offset, limit = limit)
         val pokemonList = response.results.asyncMap { pokemon ->
@@ -44,7 +67,7 @@ class PokemonRepositoryImpl(
     }
 
     private suspend fun mapToDomainPokemon(pokemon: PokemonNameNO): Pokemon {
-        val color = getPokemonColor(pokemon)
+        val color = getPokemonColor(pokemon.name)
 
         return Pokemon(
             name = pokemon.name,
@@ -53,9 +76,9 @@ class PokemonRepositoryImpl(
         )
     }
 
-    private suspend fun getPokemonColor(pokemon: PokemonNameNO): String {
+    private suspend fun getPokemonColor(name: String): String {
         val color = runCatching {
-            getPokemonColorByName(pokemon.name)
+            getPokemonColorByName(name)
         }.getOrDefault("")
         return color
     }
