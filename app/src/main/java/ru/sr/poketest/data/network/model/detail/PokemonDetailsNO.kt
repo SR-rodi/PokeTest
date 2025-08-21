@@ -11,7 +11,7 @@ class PokemonDetailsNO(
     fun toDomain(color: PokemonColor): PokemonDetails {
        return PokemonDetails(
             name = name,
-            sprites = sprites.toList(),
+            sprites = sprites.toList().mapNotNull { it },
             color = color
         )
     }

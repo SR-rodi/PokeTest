@@ -16,6 +16,7 @@ import ru.sr.poketest.domain.interactor.PokemonInteractor
 import ru.sr.poketest.domain.interactor.impl.PokemonInteractorImpl
 import ru.sr.poketest.domain.repository.PokemonRepository
 import ru.sr.poketest.presentation.screen.home.HomeViewModel
+import ru.sr.poketest.presentation.screen.search.SearchVewModel
 
 
 const val BASE_URL = "https://pokeapi.co/api/"
@@ -53,4 +54,5 @@ fun pokeModule() = module {
     factoryOf(::PokemonInteractorImpl) { bind<PokemonInteractor>() }
 
     viewModelOf(::HomeViewModel)
+    viewModelOf(::SearchVewModel)
 }

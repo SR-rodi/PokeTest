@@ -1,4 +1,4 @@
-package ru.sr.poketest.presentation.screen.search
+package ru.sr.poketest.presentation.screen.search.model
 
 import ru.sr.poketest.domain.model.PokemonColor
 import ru.sr.poketest.domain.model.PokemonDetails
