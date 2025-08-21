@@ -7,7 +7,7 @@ import ru.sr.poketest.domain.model.PokemonColor
 import ru.sr.poketest.domain.model.PokemonDetails
 
 @Entity(tableName = "pokemon_table")
-class PokemonEntity(
+data class PokemonEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val imageUrl: String,

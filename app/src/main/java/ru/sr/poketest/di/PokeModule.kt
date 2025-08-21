@@ -15,7 +15,7 @@ import ru.sr.poketest.data.repository.PokemonRepositoryImpl
 import ru.sr.poketest.domain.interactor.PokemonInteractor
 import ru.sr.poketest.domain.interactor.impl.PokemonInteractorImpl
 import ru.sr.poketest.domain.repository.PokemonRepository
-import ru.sr.poketest.presentation.screen.home.HomeViewModel
+import ru.sr.poketest.presentation.screen.home.PokemonListViewModel
 import ru.sr.poketest.presentation.screen.search.SearchVewModel
 
 
@@ -53,6 +53,6 @@ fun pokeModule() = module {
     factoryOf(::PokemonRepositoryImpl) { bind<PokemonRepository>() }
     factoryOf(::PokemonInteractorImpl) { bind<PokemonInteractor>() }
 
-    viewModelOf(::HomeViewModel)
+    viewModelOf(::PokemonListViewModel)
     viewModelOf(::SearchVewModel)
 }

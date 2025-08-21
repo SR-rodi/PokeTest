@@ -7,6 +7,7 @@ import ru.sr.poketest.domain.model.Pokemon
 
 class PokemonPagingSource(
     private val repository: PokemonRepository,
+    private val color: String?,
     private val pageSize: Int = 10
 ) : PagingSource<Int, Pokemon>() {
 
@@ -23,7 +24,11 @@ class PokemonPagingSource(
             .fold(
                 onSuccess = { pokemon ->
                     LoadResult.Page(
-                        data = pokemon,
+                        data = if (color != null) {
+                            pokemon.filter { it.color.colorName == color }
+                        } else {
+                            pokemon
+                        },
                         prevKey = if (offset == 0) null else offset - pageSize,
                         nextKey = if (pokemon.isEmpty()) null else offset + pageSize
                     )

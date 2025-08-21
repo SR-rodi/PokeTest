@@ -13,7 +13,7 @@ import ru.sr.poketest.domain.repository.PokemonRepository
 class PokemonInteractorImpl(
     private val repository: PokemonRepository
 ) : PokemonInteractor {
-    override fun getPokemonPagingData(): Flow<PagingData<Pokemon>> {
+    override fun getPokemonPagingData(color: String?): Flow<PagingData<Pokemon>> {
         return Pager(
             config = PagingConfig(
                 pageSize = PAGE_SIZE,
@@ -24,6 +24,7 @@ class PokemonInteractorImpl(
             pagingSourceFactory = {
                 PokemonPagingSource(
                     repository,
+                    color,
                     PAGE_SIZE
                 )
             }

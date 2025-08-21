@@ -6,6 +6,6 @@ import ru.sr.poketest.domain.model.Pokemon
 import ru.sr.poketest.domain.model.PokemonDetails
 
 interface PokemonInteractor {
-    fun getPokemonPagingData(): Flow<PagingData<Pokemon>>
+    fun getPokemonPagingData(color: String?): Flow<PagingData<Pokemon>>
     suspend fun getPokemonByName(name:String): Result<PokemonDetails>
 }

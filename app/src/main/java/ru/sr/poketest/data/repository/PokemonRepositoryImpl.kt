@@ -1,5 +1,6 @@
 package ru.sr.poketest.data.repository
 
+import android.util.Log
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -94,7 +95,10 @@ class PokemonRepositoryImpl(
 
     private suspend fun getPokemonFromDatabase(offset: Int, limit: Int): List<Pokemon> {
         return dao.getPokemonWithPagination(limit = limit, offset = offset)
-            .map { entity -> entity.toDomain() }
+            .map { entity ->
+                Log.w("Kart", "getPokemonFromDatabase: $entity ")
+                entity.toDomain()
+            }
     }
 
     private suspend fun <T, R> List<T>.asyncMap(transform: suspend (T) -> R): List<R> {
