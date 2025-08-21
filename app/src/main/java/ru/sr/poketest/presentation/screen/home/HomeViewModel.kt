@@ -20,14 +20,14 @@ class HomeViewModel(
     private val pokemonInteractor: PokemonInteractor
 ) : ViewModel() {
 
-    val pokemonState = MutableStateFlow(PokemonListState())
+    private val pokemonState = MutableStateFlow(PokemonListState())
     val viewState = pokemonState.asStateFlow()
 
     init {
-        loadData()
+        loadAllPokemon()
     }
 
-    private fun loadData() {
+    private fun loadAllPokemon() {
         val flow: Flow<PagingData<PokemonVO>> = pokemonInteractor
             .getPokemonPagingData()
             .map { pagingData ->

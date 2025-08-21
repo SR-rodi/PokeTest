@@ -1,11 +1,9 @@
 package ru.sr.poketest.presentation.screen.search
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,16 +14,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.sr.poketest.R
 import ru.sr.poketest.presentation.screen.search.component.PokemonSearchedContent
 import ru.sr.poketest.presentation.screen.search.model.SearchViewAction
 import ru.sr.poketest.presentation.screen.search.model.SearchViewState
 import ru.sr.poketest.presentation.screen.search.model.SearchedState
-import ru.sr.poketest.presentation.uiKit.image.PokeBall
+import ru.sr.poketest.presentation.uiKit.defaultPage.DefaultLoadingPage
 import ru.sr.poketest.presentation.uiKit.navbar.Navbar
-import ru.sr.poketest.presentation.uiKit.progress.DefaultProgressIndicator
+import ru.sr.poketest.presentation.uiKit.progress.DefaultErrorPage
 import ru.sr.poketest.presentation.uiKit.search.SearchInput
 import ru.sr.poketest.presentation.uiKit.theme.PokeTheme
 
@@ -40,7 +40,7 @@ fun SearchScreen(
             .background(PokeTheme.colors.background)
     ) {
         Navbar(
-            title = "Поиск по имени",
+            title = stringResource(R.string.pokemon_serch_screen_title),
             onClick = { onAction.invoke(SearchViewAction.OnBackArrowClick) }
         )
 
@@ -53,6 +53,7 @@ fun SearchScreen(
             SearchInput(
                 modifier = Modifier.weight(1f),
                 value = state.searchValue,
+                placeholder = stringResource(R.string.pokemon_search_placeholder),
                 onValueChange = { onAction.invoke(SearchViewAction.OnChangeSearchValue(it)) }
             )
 
@@ -67,7 +68,7 @@ fun SearchScreen(
                     onAction.invoke(SearchViewAction.OnSearchButtonClick)
                 }) {
                 Text(
-                    text = "Найти",
+                    text = stringResource(R.string.pokemon_search_button),
                     style = PokeTheme.typography.p
                 )
             }
@@ -80,8 +81,10 @@ fun SearchScreen(
 
             SearchedState.EmptySearchInput -> {
                 Text(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 16.dp),
-                    text = "Данное поле не должно быть пустым",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp, horizontal = 16.dp),
+                    text = stringResource(R.string.pokemon_search_helper_text),
                     style = PokeTheme.typography.p,
                     color = PokeTheme.colors.primaryBlueVariant,
                     textAlign = TextAlign.Center
@@ -89,45 +92,18 @@ fun SearchScreen(
             }
 
             SearchedState.Error -> {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        PokeBall()
-                        Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp, vertical = 8.dp),
-                            text = "По данному запросу ничего не найдено",
-                            textAlign = TextAlign.Center,
-                            style = PokeTheme.typography.h3,
-                            color = PokeTheme.colors.textOnBackground
-                        )
-
-                        Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            text = "Проверте введенное имя или попробуйте позже",
-                            textAlign = TextAlign.Center,
-                            style = PokeTheme.typography.h4,
-                            color = PokeTheme.colors.textOnBackground
-                        )
-                    }
-
-                }
-
+                DefaultErrorPage(
+                    title = stringResource(R.string.pokemon_search_error_title),
+                    subtitle = stringResource(R.string.pokemon_search_error_subtitle)
+                )
             }
 
             SearchedState.Loading -> {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    DefaultProgressIndicator()
-                }
+                DefaultLoadingPage()
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

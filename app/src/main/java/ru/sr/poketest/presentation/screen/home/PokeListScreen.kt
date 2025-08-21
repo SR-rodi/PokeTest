@@ -17,8 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -29,6 +31,8 @@ import ru.sr.poketest.domain.model.getColor
 import ru.sr.poketest.presentation.screen.home.model.PokemonVO
 import ru.sr.poketest.presentation.uiKit.button.CircleIconButton
 import ru.sr.poketest.presentation.uiKit.commonComponent.PokemonCard
+import ru.sr.poketest.presentation.uiKit.progress.DefaultErrorPage
+import ru.sr.poketest.presentation.uiKit.progress.DefaultProgressIndicator
 import ru.sr.poketest.presentation.uiKit.theme.PokeTheme
 
 @Composable
@@ -57,15 +61,28 @@ fun PokeListScreen(
                 )
             }
 
-            item(span = { GridItemSpan(2) }) {}
-
             items(pagingItems.itemCount) { index ->
-                pagingItems[index]?.let { pokemon ->
-                    PokemonCard(
-                        name = pokemon.name,
-                        color = pokemon.color.getColor(),
-                        imageUrl = pokemon.imageUrl
-                    )
+                when (pagingItems.loadState.refresh) {
+                    is LoadState.Error -> {
+                        DefaultErrorPage(
+                            title = stringResource(R.string.pokemon_list_error_title),
+                            subtitle = stringResource(R.string.pokemon_list_error_subtitle)
+                        )
+                    }
+
+                    LoadState.Loading -> {
+                        DefaultProgressIndicator()
+                    }
+
+                    is LoadState.NotLoading -> {
+                        pagingItems[index]?.let { pokemon ->
+                            PokemonCard(
+                                name = pokemon.name,
+                                color = pokemon.color.getColor(),
+                                imageUrl = pokemon.imageUrl
+                            )
+                        }
+                    }
                 }
             }
         }

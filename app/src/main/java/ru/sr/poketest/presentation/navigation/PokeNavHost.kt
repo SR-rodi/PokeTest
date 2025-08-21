@@ -17,7 +17,7 @@ fun NavGraphBuilder.pokeNavHost(navController: NavController) {
 
     composable<PokeDestination.PokemonList> {
         val viewModel: HomeViewModel = koinViewModel()
-        val state = viewModel.pokemonState.collectAsState()
+        val state = viewModel.viewState.collectAsState()
 
         PokeListScreen(
             pagingItems = state.value.pagingFlow.collectAsLazyPagingItems(),
