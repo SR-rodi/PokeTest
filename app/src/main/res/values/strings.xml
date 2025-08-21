@@ -8,4 +8,5 @@
     <string name="pokemon_search_button">Найти</string>
     <string name="pokemon_serch_screen_title">Поиск по имени</string>
     <string name="pokemon_search_placeholder">Поиск по имени</string>
+    <string name="pokemon_error_paging">Ошибка загрузки, повторить</string>
 </resources>
