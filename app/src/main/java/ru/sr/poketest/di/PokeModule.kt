@@ -23,7 +23,6 @@ import ru.sr.poketest.domain.repository.PokemonRepository
 import ru.sr.poketest.presentation.screen.home.PokemonListViewModel
 import ru.sr.poketest.presentation.screen.search.SearchVewModel
 
-
 const val BASE_URL = "https://pokeapi.co/api/"
 const val DATABASE_NAME = "pokemon_database"
 
@@ -52,7 +51,6 @@ fun pokeModule() = module {
             .build()
     }
 
-
     single { get<Retrofit>().create(PokeApi::class.java) }
 
     single {
@@ -64,8 +62,6 @@ fun pokeModule() = module {
 
         room.pokemonDao()
     }
-
-
 
     factoryOf(::PokemonRepositoryImpl) { bind<PokemonRepository>() }
     factoryOf(::PokemonInteractorImpl) { bind<PokemonInteractor>() }

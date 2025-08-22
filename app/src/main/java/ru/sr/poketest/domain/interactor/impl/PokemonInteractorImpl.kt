@@ -23,9 +23,9 @@ class PokemonInteractorImpl(
             ),
             pagingSourceFactory = {
                 PokemonPagingSource(
-                    repository,
-                    color,
-                    PAGE_SIZE
+                    repository = repository,
+                    color = color,
+                    pageSize = PAGE_SIZE
                 )
             }
         ).flow

@@ -1,6 +1,10 @@
 package ru.sr.poketest.data.network.model
 
-data class PokemonSpeciesNO(
+import kotlinx.serialization.SerialName
+
+class PokemonSpeciesNO(
+    @SerialName("color")
     val color: ColorNO,
+    @SerialName("id")
     val id: Int,
 )

@@ -46,7 +46,7 @@ fun Navbar(
     }
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = false)
 @Composable
 private fun NavbarPreview() {
     PokeTheme {

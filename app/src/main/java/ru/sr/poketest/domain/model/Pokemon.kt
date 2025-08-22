@@ -5,5 +5,3 @@ class Pokemon(
     val imageUrl: String,
     val color: PokemonColor
 )
-
-

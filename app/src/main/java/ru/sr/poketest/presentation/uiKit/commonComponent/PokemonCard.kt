@@ -42,7 +42,8 @@ fun PokemonCard(
         ImageWithPlaceholder(
             modifier = Modifier
                 .align(Alignment.Center)
-                .fillMaxSize(0.6f),
+                .fillMaxSize(0.6f)
+                .padding(bottom = 8.dp),
             imageUrl = imageUrl
         )
 

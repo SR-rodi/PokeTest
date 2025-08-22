@@ -4,9 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
-class NetworkCheckerImpl(
-    context: Context
-):NetworkChecker {
+class NetworkCheckerImpl(context: Context) : NetworkChecker {
+
     private val connectivityManager =
         context.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

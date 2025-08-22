@@ -1,9 +1,8 @@
 package ru.sr.poketest.data.network.model
 
-data class PokemonListResponseNO(
-    val count: Int,
-    val next: String?,
-    val previous: String?,
+import kotlinx.serialization.SerialName
+
+class PokemonListResponseNO(
+    @SerialName("results")
     val results: List<PokemonNameNO>
 )
-

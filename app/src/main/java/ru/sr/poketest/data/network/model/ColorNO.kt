@@ -1,5 +1,8 @@
 package ru.sr.poketest.data.network.model
 
-data class ColorNO(
+import kotlinx.serialization.SerialName
+
+class ColorNO(
+    @SerialName("name")
     val name: String
 )

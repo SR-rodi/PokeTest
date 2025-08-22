@@ -29,10 +29,10 @@ fun CircleIconButton(
 ) {
     Box(
         modifier = modifier
+            .shadow(elevation = 2.dp, shape = CircleShape)
             .size(buttonSize)
             .clip(CircleShape)
             .background(PokeTheme.colors.primaryBlue)
-            .shadow(elevation = 2.dp)
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {

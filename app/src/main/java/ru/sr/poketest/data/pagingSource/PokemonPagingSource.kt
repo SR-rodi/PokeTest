@@ -8,7 +8,7 @@ import ru.sr.poketest.domain.model.Pokemon
 class PokemonPagingSource(
     private val repository: PokemonRepository,
     private val color: String?,
-    private val pageSize: Int = 10
+    private val pageSize: Int
 ) : PagingSource<Int, Pokemon>() {
 
     override fun getRefreshKey(state: PagingState<Int, Pokemon>): Int? {
