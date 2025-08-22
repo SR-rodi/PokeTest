@@ -40,7 +40,8 @@ fun Navbar(
             text = title,
             textAlign = TextAlign.Center,
             maxLines = 1,
-            style = PokeTheme.typography.h4
+            style = PokeTheme.typography.h4,
+            color = PokeTheme.colors.textOnBackground
         )
     }
 }
