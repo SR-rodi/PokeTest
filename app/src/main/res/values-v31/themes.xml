@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SplashScreen" parent="Theme.PokeTest">
+        <!-- указываем тему сплеша для Android 12+ -->
+        <item name="android:windowSplashScreenBackground">@color/ic_launcher_poke_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_poke</item>
+        <item name="android:windowSplashScreenAnimationDuration">300</item>
+        <!-- отключаем автоскрытие статус-бара, если нужно -->
+        <item name="postSplashScreenTheme">@style/Theme.SplashScreen</item>
+    </style>
+</resources>
