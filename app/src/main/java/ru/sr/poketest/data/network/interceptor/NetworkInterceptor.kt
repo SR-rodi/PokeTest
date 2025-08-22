@@ -1,9 +1,9 @@
-package ru.sr.poketest.data.interceptor
+package ru.sr.poketest.data.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import ru.sr.poketest.domain.networChecker.NetworkChecker
-import ru.sr.poketest.domain.networChecker.NoNetworkException
+import ru.sr.poketest.data.network.networChecker.NetworkChecker
+import ru.sr.poketest.data.network.networChecker.NoNetworkException
 
 class NetworkInterceptor(
     private val networkChecker: NetworkChecker

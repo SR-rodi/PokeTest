@@ -1,4 +1,4 @@
-package ru.sr.poketest.domain.networChecker
+package ru.sr.poketest.data.network.networChecker
 
 import android.content.Context
 import android.net.ConnectivityManager
