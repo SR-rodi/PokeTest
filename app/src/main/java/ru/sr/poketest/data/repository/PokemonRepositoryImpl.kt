@@ -25,7 +25,7 @@ class PokemonRepositoryImpl(
             onSuccess = { pokemon ->
                 Result.success(pokemon)
             },
-            onFailure = {
+            onFailure = { exception ->
                 val pokemon = getPokemonFromDatabase(offset = offset, limit = limit)
                 Result.success(pokemon)
             }

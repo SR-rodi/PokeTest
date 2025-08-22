@@ -5,13 +5,18 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.sr.poketest.data.database.PokemonDatabase
+import ru.sr.poketest.data.interceptor.NetworkInterceptor
 import ru.sr.poketest.data.network.PokeApi
 import ru.sr.poketest.data.repository.PokemonRepositoryImpl
+import ru.sr.poketest.domain.networChecker.NetworkChecker
+import ru.sr.poketest.domain.networChecker.NetworkCheckerImpl
 import ru.sr.poketest.domain.interactor.PokemonInteractor
 import ru.sr.poketest.domain.interactor.impl.PokemonInteractorImpl
 import ru.sr.poketest.domain.repository.PokemonRepository
@@ -24,19 +29,29 @@ const val DATABASE_NAME = "pokemon_database"
 
 fun pokeModule() = module {
 
-    single {
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
-            .build()
+    singleOf(::NetworkCheckerImpl) { bind<NetworkChecker>() }
 
+    singleOf(::NetworkInterceptor)
+
+    single<OkHttpClient> {
+        OkHttpClient.Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
+            .addInterceptor(get<NetworkInterceptor>())
+            .build()
+    }
+
+    single {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(okHttpClient)
+            .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
 
     single { get<Retrofit>().create(PokeApi::class.java) }
 
@@ -49,6 +64,8 @@ fun pokeModule() = module {
 
         room.pokemonDao()
     }
+
+
 
     factoryOf(::PokemonRepositoryImpl) { bind<PokemonRepository>() }
     factoryOf(::PokemonInteractorImpl) { bind<PokemonInteractor>() }
