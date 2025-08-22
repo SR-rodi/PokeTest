@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun PokeBall(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
         Box(
             modifier

@@ -7,7 +7,6 @@ import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
-import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,10 +14,10 @@ import ru.sr.poketest.data.database.PokemonDatabase
 import ru.sr.poketest.data.interceptor.NetworkInterceptor
 import ru.sr.poketest.data.network.PokeApi
 import ru.sr.poketest.data.repository.PokemonRepositoryImpl
-import ru.sr.poketest.domain.networChecker.NetworkChecker
-import ru.sr.poketest.domain.networChecker.NetworkCheckerImpl
 import ru.sr.poketest.domain.interactor.PokemonInteractor
 import ru.sr.poketest.domain.interactor.impl.PokemonInteractorImpl
+import ru.sr.poketest.domain.networChecker.NetworkChecker
+import ru.sr.poketest.domain.networChecker.NetworkCheckerImpl
 import ru.sr.poketest.domain.repository.PokemonRepository
 import ru.sr.poketest.presentation.screen.home.PokemonListViewModel
 import ru.sr.poketest.presentation.screen.search.SearchVewModel
