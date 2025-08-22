@@ -23,6 +23,7 @@ import ru.sr.poketest.presentation.uiKit.theme.PokeTheme
 
 @Composable
 fun PokemonSearchedContent(searchedState: SearchedState.Content) {
+    
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +43,7 @@ fun PokemonSearchedContent(searchedState: SearchedState.Content) {
             PokemonCard(
                 imageUrl = sprite,
                 color = searchedState.pokemon.color.getColor(),
-                name = ""
+                name = sprite
             )
         }
         item {
